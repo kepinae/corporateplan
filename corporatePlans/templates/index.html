@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+    
+                
+       <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          
+                          <div class="table-responsive" style="margin-top:7%">
+						  <header class="panel-heading">
+                           <h3>List Of Customers</h3>
+                          </header>
+                            <table class="table">
+                              <thead>
+                                <tr>
+								  <th> </th>
+                                  <th>Full Name</th>
+								  <th>UserName</th>
+                                  <th>Email Id</th>
+                                  <th>Edit</th>
+                                  <th>Delete</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+							  
+                               {% for i in customers_list %}
+                                <tr>
+								
+                                  <td> </td>
+                                  <td>{{i.user_detail.first_name}}</td>
+								  <td>{{i.user_detail.username}}</td>
+                                  <td>{{i.user_detail.email}}</td>
+                                  <td><form action="/editcustomer" method="post">
+                                        {% csrf_token %}
+                                        <input type='text' style='display:none' name='custmr_id' value="{{i.id}}">
+                                    <button class="btn btn-danger" name="edit_cust" type="submit">Edit</button>
+                                        </form></td>
+								  
+                                  <td><form action="/delcustomer" method="post">
+                                        {% csrf_token %}
+                                        <input type='text' style='display:none' name='custmr_id' value="{{i.id}}">
+                                    <button class="btn btn-danger" name="del_cust" type="submit">Delete</button>
+                                        </form></td>
+                                  
+                                </tr>
+								{% endfor %}
+                                
+                              </tbody>
+                            </table>
+                          </div>
+
+                      </section>
+                  </div>
+              </div>
+                
+
+{% endblock %}

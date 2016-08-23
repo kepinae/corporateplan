@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Bootstrap CSS -->    
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="../static/css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="../static/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/style-responsive.css" rel="stylesheet" />
+
+    
+  <style>
+form {display: inline-block;}
+</style>
+    
+  </head>
+  <div style="margin-left:60%;margin-top:2%">
+
+            <form  action="/order" method="get">  
+            <button class="btn btn-primary" type="submit">Make Order</button>
+            </form>
+
+
+            <form  action="/listorder" method="get">  
+            <button class="btn btn-primary" type="submit">View Orders</button>
+            </form>
+ 
+       
+            <form  action="/logout" method="post">  
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">Logout</button>
+            </form>
+   </div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+              
+      <div class="table-responsive" style="margin-top:7%">
+  <header class="panel-heading">
+               <h3>Plans</h3>
+              </header>
+                <table class="table">
+                  <thead>
+                    <tr>
+		  <th> </th>
+                      <th>Company</th>
+                      <th>Plan Type</th>
+                      <th>Free Reqs</th>                
+                      <th>Free Kms</th>
+                      <th>Available Reqs</th>                
+                      <th>Available Kms</th>
+                      <th>Created Date</th>
+                      <th>Validity in months</th> 
+                    </tr>
+                  </thead>
+                  <tbody>
+	  {% for i in plan_list %}
+                    <tr>
+		
+                      <td> </td>
+                      <td>{{i.company}}</td>
+                      <td>{{i.plan_type}}</td>
+                      <td>{{i.free_req_in_plan}}</td>
+                      <td>{{i.free_kms_in_plan}}</td>
+                      <td>{{i.no_of_req_remaining}}</td>
+                      <td>{{i.kms_remaining}}</td>
+                      <td>{{i.created_date}}</td>
+                      <td>{{i.validity_in_months}}</td>
+
+                      
+                      
+                    </tr>
+		{% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+
+          </section>
+      </div>
+  </div>
+
+   <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- nicescroll -->
+    <script src="../static/js/jquery.scrollTo.min.js"></script>
+    <script src="../static/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <!--custome script for all page-->
+    <script src="../static/js/scripts.js"></script>
+  <script type="text/javascript" src="../static/js/jquery.validate.min.js"></script>
+    <!-- custom form validation script for this page-->
+    <script src="../static/js/form-validation-script.js"></script>
+    <!--custome script for all page-->
+    <script src="../static/js/scripts.js"></script>    
+
+</html>               
